@@ -7,4 +7,5 @@
     <color name="colorLightOrange">#80FACE9C</color>
     <color name="colorBlack">#000000</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="color_divider_left_menu">#14000000</color>
 </resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contentView"
+    style="@style/Toolbar"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <h2physics.accuweather_version2.ui.customview.StateImageButton
+        android:id="@+id/btn_left"
+        style="@style/ToolbarButtonLeft"
+        tools:src="@drawable/ic_back"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/ToolbarTextViewTitle"/>
+
+    <LinearLayout
+        android:id="@+id/ll_right_container"
+        style="@style/ToolbarRightContainer"/>
+
+</RelativeLayout>

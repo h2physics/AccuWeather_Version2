@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">AccuWeather_Version2</string>
+    <string name="app_name">AccuWeather</string>
+
+    //Menu strings
+    <string name="drawer_list">Manager city</string>
+    <string name="drawer_setting">Setting</string>
+
+    //Notification strings
+    <string name="message_confirm_exit_app">Do you want to exit the app?</string>
+    <string name="message_condition_exit_app">Press back again to exit the app!</string>
+
+    //ForecastFragment
+    <string name="wind">Wind</string>
+    <string name="real_temp">Real Temp</string>
+    <string name="humidity">Humidity</string>
+    <string name="pressure">Pressure</string>
+
+    //API
+    <string name="base_url">https://api.openweathermap.org/data/2.5/forecast/</string>
+
+    //Special Signal
+    <string name="celsius">\u2103</string>
+    <string name="fahrenheit">\u2109</string>
 </resources>

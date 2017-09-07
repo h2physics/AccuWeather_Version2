@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import butterknife.ButterKnife;
 import h2physics.accuweather_version2.R;
 
 /**
@@ -28,7 +29,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        if (!hasLeftMenu()){
+            setContentView(getContentLayout());
+            ButterKnife.bind(this);
+            initView();
+            initData();
+        }
     }
 
     abstract public int getContentLayout();
@@ -39,6 +45,14 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     abstract public void initToolbar();
 
+    public boolean hasLeftMenu(){
+        return false;
+    }
+
+    /**
+     * Show keyboard in activity
+     * @param view
+     */
     public void showKeyboard(View view){
         if (view == null){
             return;
@@ -47,6 +61,9 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
     }
 
+    /**
+     * Hide keyboard in activity
+     */
     public void hideKeyboard(){
         InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         View view = getCurrentFocus();
@@ -56,6 +73,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    /**
+     * Show loading in activity
+     * @param loadingMessage
+     */
     public void showLoading(final String loadingMessage){
         try{
             runOnUiThread(new Runnable() {
@@ -89,14 +110,24 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Show loading in activity
+     */
     protected void showLoading(){
         showLoading(null);
     }
 
+    /**
+     * Show loading in activity
+     * @param resId
+     */
     public void showLoading(@StringRes int resId){
         showLoading(getString(resId));
     }
 
+    /**
+     * Hide loading in activity
+     */
     public void hideLoading(){
         final View v = findViewById(R.id.loading_view);
         if (v == null){
@@ -112,16 +143,28 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Start new activity with animation
+     * @param intent
+     */
     public void startActivityWithAnimation(Intent intent){
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_left);
     }
 
+    /**
+     * Finish an activity with animation
+     */
     public void finishActivityWithAnimation(){
         finish();
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_right);
     }
 
+    /**
+     * Define content alert in activity
+     * @param title
+     * @param mess
+     */
     public void showAlert(final String title, final String mess){
         if (!isFinishing()){
             runOnUiThread(new Runnable() {
@@ -142,6 +185,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Define content alert in activity
+     * @param resTitleId
+     * @param resMessId
+     */
     public void showAlert(@StringRes final int resTitleId, @StringRes final int resMessId){
         if (!isFinishing()){
             runOnUiThread(new Runnable() {
@@ -162,6 +210,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Define content alert in activity
+     * @param title
+     * @param mess
+     * @param listener
+     */
     public void showAlert(final String title, final String mess, final AlertListener listener){
         if (!isFinishing()){
             runOnUiThread(new Runnable() {
@@ -189,6 +243,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Define content alert in activity
+     * @param title
+     * @param mess
+     * @param yesString
+     * @param noString
+     * @param listener
+     */
     public void showAlert(final String title, final String mess, final String yesString, final String noString, final AlertListener listener){
         if (!isFinishing()){
             runOnUiThread(new Runnable() {
@@ -226,6 +288,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         public void yesOnClick();
     }
 
+    /**
+     * Post delay in activity
+     * @param runnable
+     * @param delay
+     */
     public void postDelayed(Runnable runnable, long delay){
         new Handler().postDelayed(runnable, delay);
     }
